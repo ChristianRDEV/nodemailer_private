@@ -10,9 +10,9 @@ class NodeMailerController {
             log("nodemailer api start");
             const mailOptions = {
                 from: "darkl3on22@gmail.com",
-                to: "rojas.christian@outlook.com",
+                to: req.body.to,
                 subject: "Sending Email using Nodemailer",
-                html: "<h1>This is a test</h1>"
+                html: req.body.html,
             };
             const transporter = nodemailer.createTransport({
                 service: "Gmail",
