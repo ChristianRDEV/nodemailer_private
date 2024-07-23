@@ -6,9 +6,9 @@ import cors from 'cors';
 import debug from 'debug';
 
 import { CommonRoutesConfig } from './common/common.routes.config';
-import ToolsRoutes from "./tools/tools.routes.config";
+import NodemailerRoutes from "./NodeMailer/NodeMailer.routes";
 
-const toolsRouter = new ToolsRoutes("ToolsRoutes").getRouter;
+const NodemailerRouter = new NodemailerRoutes("NodeMailerRoutes").getRouter;
 
 const app: express.Application = express();
 const port = 3000;
@@ -31,10 +31,11 @@ if (!process.env.DEBUG) {
     loggerOptions.meta = false; // when not debugging, log requests as one-liners
 }
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+
 app.use(expressWinston.logger(loggerOptions));
 //Routes
-app.use("/tools", toolsRouter);
-
+app.use("/mail", NodemailerRouter);
 
 const runningMessage = `Server running at http://localhost:${port}`;
 
