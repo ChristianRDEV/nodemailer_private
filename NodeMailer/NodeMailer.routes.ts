@@ -13,9 +13,9 @@ class NodemailerRoutes extends CommonRoutesConfig {
         this.getRouter
         .route("/")
         .post(
-            body("to").isString,
-            body("html").isString,
-            validationMiddleware.verifyFieldErrors,
+            // body("to").exists,
+            // body("html").exists,
+            // validationMiddleware.verifyFieldErrors,
             NodeMailerController.sendMail
         );
     }
